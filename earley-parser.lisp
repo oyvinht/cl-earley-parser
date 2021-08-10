@@ -4,7 +4,7 @@
 		      (chart-listing chart-listing) 
 		      (grammar grammar))
   "Predict possible successor states based on the grammar. As a side-effect, add
- these states to the chart that this state belong to."
+   these states to the chart that this state belong to."
   (let ((B (next-cat state))
         (j (state-dot-index state)))
     (loop for production in (grammar-productions B grammar)
@@ -25,9 +25,9 @@
 		    (words list) 
 		    (chart-listing chart-listing)
 		    (lexicon lexicon))
-  "Check if the next category for this state is a member of the pos-cathegories
- for the current word. As a side effect, enqueue a new state corresponding to th
-is find, into the current chart."
+  "Check if the next category for this state is a member of the pos-categories
+   for the current word. As a side effect, enqueue a new state corresponding to
+   this find, into the current chart."
   (let* ((B (next-cat state))
          (j (state-dot-index state))
          (word (nth j words)))
@@ -51,9 +51,9 @@ is find, into the current chart."
 	 new-state (nth (+ j 1) (chart-listing-charts chart-listing)))))))
 
 (defun completer (state chart-listing)
-  "Find and return a list of the previous states that expect this states cathego
-ry at this dot-index with the dot moved one step forward. As a side-effect, enqu
-eue the states in the current chart."
+  "Find and return a list of the previous states that expect this states
+   category at this dot-index with the dot moved one step forward. As a 
+   side-effect, enqeue the states in the current chart."
   (let ((B (state-condition state))
         (j (state-constituent-index state))
         (k (state-dot-index state)))

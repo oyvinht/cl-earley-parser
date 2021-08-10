@@ -20,7 +20,7 @@
    free grammar(CFG)."
   (let ((rules (make-hash-table :test *string-comparer*)))
     ;; For each production in the BNF file, create a list of possible ordered
-    ;; symbol sequences (list of strings) that is a legal expression for the
+    ;; symbol sequences (list of strings) that are legal expressions for the
     ;; symbol
     (with-open-file (file pathname :direction :input)
       (loop for production = (read-next-bnf-production file)

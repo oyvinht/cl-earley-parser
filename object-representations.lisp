@@ -56,18 +56,18 @@
             (state-constituent-index state)(state-dot-index state))))
 
 (defmethod incomplete? ((state state))
-  "Returns whether or not there is anything left of the subtree behind the dot."
+  "Return whether there is anything remaining of the subtree after the dot."
   (not (= (state-dot state) (length (state-subtree state)))))
 
 (defmethod next-cat ((state state))
-  "Returns the next cathegory of 'state'"
+  "Return the next cathegory of 'state'"
   (let ((subtree (state-subtree state))
         (dot (state-dot state)))
     (when (> (length subtree) dot)
       (nth dot subtree))))
 
 (defmethod state->tree ((state state))
-  "Creates a tree from a chart-listing object containting charts"
+  "Create a tree from a chart-listing object containting charts"
   (if (null (state-source-states state))
     (list (state-condition state) (first (state-subtree state)))
     (cons (state-condition state)
@@ -108,12 +108,12 @@
 
 (defmethod chart-listing->trees ((chart-listing chart-listing))
   "Return a list of trees created by following each successful parse in the last
- chart of 'chart-listings'"
+   chart of 'chart-listings'"
   (loop for state in (chart-states 
 		      (first (last (chart-listing-charts chart-listing))))
-     when (and (funcall *string-comparer* (state-condition state) "S")
-	       (= (state-constituent-index state) 0)
+	when (and (funcall *string-comparer* (state-condition state) "S")
+		  (= (state-constituent-index state) 0)
 	       (= (state-dot-index state)
 		  (- (length (chart-listing-charts chart-listing)) 1))
 	       (not (incomplete? state)))
-     collect (state->tree state)))
+	  collect (state->tree state)))
