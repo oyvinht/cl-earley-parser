@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        label {
-          label "woha"
-          customWorkspace "here"
-        }
-    }
+    agent any
     stages {
         stage('build') {
             steps {
