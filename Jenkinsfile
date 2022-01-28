@@ -1,5 +1,10 @@
 pipeline {
-    agent { docker { image 'python:3.10.1-alpine' } }
+    agent {
+        label {
+          label "woha"
+          customWorkspace "here"
+        }
+    }
     stages {
         stage('build') {
             steps {
